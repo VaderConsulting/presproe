@@ -1,0 +1,1619 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Begin VB.Form frmMain 
+   BackColor       =   &H80000005&
+   BorderStyle     =   3  'Fixed Dialog
+   Caption         =   "ResourcePro"
+   ClientHeight    =   5400
+   ClientLeft      =   45
+   ClientTop       =   330
+   ClientWidth     =   7455
+   HasDC           =   0   'False
+   Icon            =   "frmMain.frx":0000
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   5400
+   ScaleWidth      =   7455
+   StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame fraBottomBack 
+      BorderStyle     =   0  'None
+      Height          =   705
+      Left            =   0
+      TabIndex        =   3
+      Top             =   4695
+      Width           =   7455
+      Begin VB.CommandButton cmdBack 
+         Caption         =   "< &Back"
+         Enabled         =   0   'False
+         Height          =   345
+         Left            =   3785
+         TabIndex        =   0
+         Top             =   210
+         Width           =   1125
+      End
+      Begin VB.CommandButton cmdNext 
+         Caption         =   "&Next >"
+         Height          =   345
+         Left            =   4905
+         TabIndex        =   1
+         Top             =   210
+         Width           =   1125
+      End
+      Begin VB.CommandButton cmdCancel 
+         Cancel          =   -1  'True
+         Caption         =   "Cancel"
+         Height          =   345
+         Left            =   6180
+         TabIndex        =   2
+         Top             =   210
+         Width           =   1125
+      End
+      Begin ResourcePro.Light3D l3dBottomLine 
+         Height          =   30
+         Left            =   0
+         TabIndex        =   4
+         TabStop         =   0   'False
+         Top             =   0
+         Width           =   7455
+         _ExtentX        =   13150
+         _ExtentY        =   53
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+   End
+   Begin VB.Frame fraScreenHdr 
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      Height          =   900
+      Left            =   0
+      TabIndex        =   9
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin ResourcePro.Light3D l3dTopLine 
+         Height          =   30
+         Left            =   0
+         TabIndex        =   10
+         TabStop         =   0   'False
+         Top             =   870
+         Width           =   7455
+         _ExtentX        =   13150
+         _ExtentY        =   53
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin VB.Image imgLogo 
+         Height          =   735
+         Left            =   6660
+         Picture         =   "frmMain.frx":0ABA
+         ToolTipText     =   "VB Frood is ultrakorrekt - so check out http://www.vbfrood.de"
+         Top             =   60
+         Width           =   735
+      End
+      Begin VB.Label lblScrnSubTitle 
+         BackColor       =   &H80000005&
+         Height          =   255
+         Left            =   675
+         TabIndex        =   12
+         Top             =   405
+         Width           =   5985
+      End
+      Begin VB.Label lblScrnTitle 
+         BackColor       =   &H80000005&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   345
+         TabIndex        =   11
+         Top             =   180
+         Width           =   6315
+      End
+   End
+   Begin VB.Frame fraWatermark 
+      BorderStyle     =   0  'None
+      Height          =   4710
+      Left            =   0
+      TabIndex        =   40
+      Top             =   0
+      Width           =   2475
+      Begin VB.Label lblContact 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "redacted@example.com"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Small Fonts"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000011&
+         Height          =   255
+         Left            =   -120
+         TabIndex        =   42
+         Top             =   4410
+         Width           =   2415
+      End
+      Begin VB.Label lblCopyright 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "Copyright © 2000 Thomas Kabir"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Small Fonts"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000011&
+         Height          =   255
+         Left            =   -120
+         TabIndex        =   41
+         Top             =   4200
+         Width           =   2415
+      End
+      Begin VB.Image imgWatermark 
+         Height          =   4710
+         Left            =   0
+         Picture         =   "frmMain.frx":0CA5
+         Top             =   0
+         Width           =   2460
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   6
+      Left            =   0
+      TabIndex        =   43
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin VB.CommandButton cmdShowFolder 
+         Caption         =   "Show resources"
+         Height          =   435
+         Left            =   3000
+         TabIndex        =   47
+         Top             =   1800
+         Width           =   2115
+      End
+      Begin VB.Shape shpButtonFrame 
+         BorderColor     =   &H80000011&
+         Height          =   465
+         Left            =   2985
+         Top             =   1785
+         Width           =   2145
+      End
+      Begin VB.Label Label20 
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Search finished"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   675
+         Left            =   2565
+         TabIndex        =   46
+         Top             =   180
+         Width           =   3435
+      End
+      Begin VB.Label Label19 
+         BackColor       =   &H80000005&
+         Caption         =   "ResourcePro has finished the search. Click on Show resources to open the destination folder containing the extracted resources."
+         Height          =   675
+         Left            =   2565
+         TabIndex        =   45
+         Top             =   900
+         Width           =   3435
+      End
+      Begin VB.Label Label18 
+         BackColor       =   &H80000005&
+         Caption         =   "Click on close to exit ResourcePro."
+         Height          =   195
+         Left            =   2565
+         TabIndex        =   44
+         Top             =   4320
+         Width           =   4335
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   0
+      Left            =   0
+      TabIndex        =   5
+      Top             =   0
+      Width           =   7455
+      Begin VB.Label Label5 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "redacted@example.com"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Small Fonts"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000011&
+         Height          =   255
+         Left            =   -120
+         TabIndex        =   34
+         Top             =   4410
+         Width           =   2415
+      End
+      Begin VB.Label Label4 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "Copyright © 2000 Thomas Kabir"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Small Fonts"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000011&
+         Height          =   255
+         Left            =   -120
+         TabIndex        =   33
+         Top             =   4200
+         Width           =   2415
+      End
+      Begin VB.Image imgWizard 
+         Height          =   4710
+         Left            =   0
+         Picture         =   "frmMain.frx":1645
+         Top             =   0
+         Width           =   2460
+      End
+      Begin VB.Label Label1 
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Welcome to ResourcePro"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   675
+         Left            =   2565
+         TabIndex        =   8
+         Top             =   180
+         Width           =   3435
+      End
+      Begin VB.Label Label2 
+         BackColor       =   &H80000005&
+         Caption         =   "ResourcePro finds resources in program files on your system and automatically extracts them to a folder."
+         Height          =   675
+         Left            =   2565
+         TabIndex        =   7
+         Top             =   900
+         Width           =   3435
+      End
+      Begin VB.Label Label3 
+         BackColor       =   &H80000005&
+         Caption         =   "Click on next to continue."
+         Height          =   195
+         Left            =   2565
+         TabIndex        =   6
+         Top             =   4320
+         Width           =   3435
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   5
+      Left            =   0
+      TabIndex        =   35
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin ResourcePro.Light3D l3dProgressBack 
+         Height          =   285
+         Left            =   1620
+         TabIndex        =   48
+         TabStop         =   0   'False
+         Top             =   1800
+         Visible         =   0   'False
+         Width           =   5295
+         _ExtentX        =   9340
+         _ExtentY        =   503
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Begin MSComctlLib.ProgressBar prbProgress 
+            Height          =   255
+            Left            =   15
+            TabIndex        =   49
+            Top             =   15
+            Width           =   5265
+            _ExtentX        =   9287
+            _ExtentY        =   450
+            _Version        =   393216
+            Appearance      =   0
+            Enabled         =   0   'False
+            Max             =   50
+            Scrolling       =   1
+         End
+      End
+      Begin MSComctlLib.ListView lvResStats 
+         Height          =   1995
+         Left            =   1620
+         TabIndex        =   39
+         Top             =   2460
+         Width           =   5295
+         _ExtentX        =   9340
+         _ExtentY        =   3519
+         View            =   3
+         Arrange         =   2
+         LabelEdit       =   1
+         LabelWrap       =   0   'False
+         HideSelection   =   -1  'True
+         FullRowSelect   =   -1  'True
+         _Version        =   393217
+         SmallIcons      =   "ilResTypes"
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         Appearance      =   1
+         NumItems        =   2
+         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Text            =   "Resource type"
+            Object.Width           =   2540
+         EndProperty
+         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   1
+            Text            =   "Found"
+            Object.Width           =   2540
+         EndProperty
+      End
+      Begin ResourcePro.Light3D l3dCenterLine 
+         Height          =   30
+         Left            =   450
+         TabIndex        =   38
+         TabStop         =   0   'False
+         Top             =   2220
+         Width           =   6555
+         _ExtentX        =   11562
+         _ExtentY        =   53
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin MSComCtl2.Animation aniAnim 
+         Height          =   735
+         Left            =   600
+         TabIndex        =   37
+         TabStop         =   0   'False
+         Top             =   1260
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   1296
+         _Version        =   393216
+         FullWidth       =   49
+         FullHeight      =   49
+      End
+      Begin VB.Label lblStatus 
+         Height          =   435
+         Left            =   1620
+         TabIndex        =   36
+         Top             =   1260
+         Width           =   5295
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   4
+      Left            =   0
+      TabIndex        =   31
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin VB.Label Label10 
+         Caption         =   "Click on finish to start the search. The process may take several minutes."
+         Height          =   495
+         Left            =   675
+         TabIndex        =   32
+         Top             =   1080
+         Width           =   4635
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   3
+      Left            =   0
+      TabIndex        =   27
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin VB.TextBox txtDestPath 
+         Height          =   315
+         Left            =   780
+         TabIndex        =   30
+         Top             =   1800
+         Width           =   3555
+      End
+      Begin VB.CommandButton cmdBrowseDest 
+         Caption         =   "..."
+         Height          =   315
+         Left            =   4380
+         TabIndex        =   29
+         Top             =   1800
+         Width           =   315
+      End
+      Begin VB.Label Label9 
+         Caption         =   "Please specify the folder where the extacted resources will be saved."
+         Height          =   495
+         Left            =   675
+         TabIndex        =   28
+         Top             =   1080
+         Width           =   4635
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   2
+      Left            =   0
+      TabIndex        =   20
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin MSComctlLib.ImageList ilResTypes 
+         Left            =   120
+         Top             =   1800
+         _ExtentX        =   1005
+         _ExtentY        =   1005
+         BackColor       =   -2147483643
+         ImageWidth      =   16
+         ImageHeight     =   16
+         MaskColor       =   12632256
+         _Version        =   393216
+         BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+            NumListImages   =   6
+            BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "frmMain.frx":1FE5
+               Key             =   "BITMAP"
+               Object.Tag             =   "Bitmap"
+            EndProperty
+            BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "frmMain.frx":213F
+               Key             =   "ICON"
+               Object.Tag             =   "Icon"
+            EndProperty
+            BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "frmMain.frx":2299
+               Key             =   "CURSOR"
+               Object.Tag             =   "Cursor"
+            EndProperty
+            BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "frmMain.frx":23F3
+               Key             =   "ANICURSOR"
+               Object.Tag             =   "Animated cursor"
+            EndProperty
+            BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "frmMain.frx":254D
+               Key             =   "VIDEO"
+               Object.Tag             =   "Video (AVI)"
+            EndProperty
+            BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "frmMain.frx":26A7
+               Key             =   "HTML"
+               Object.Tag             =   "Web page"
+            EndProperty
+         EndProperty
+      End
+      Begin MSComctlLib.ListView lvResTypes 
+         Height          =   2235
+         Left            =   780
+         TabIndex        =   26
+         Top             =   1800
+         Width           =   2295
+         _ExtentX        =   4048
+         _ExtentY        =   3942
+         View            =   2
+         Arrange         =   2
+         LabelEdit       =   1
+         LabelWrap       =   -1  'True
+         HideSelection   =   -1  'True
+         Checkboxes      =   -1  'True
+         _Version        =   393217
+         SmallIcons      =   "ilResTypes"
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         Appearance      =   1
+         NumItems        =   0
+      End
+      Begin VB.Label Label7 
+         Caption         =   "Choose the resource types you want to extract."
+         Height          =   315
+         Left            =   675
+         TabIndex        =   21
+         Top             =   1260
+         Width           =   4635
+      End
+   End
+   Begin VB.Frame fraScreen 
+      BorderStyle     =   0  'None
+      Height          =   4695
+      Index           =   1
+      Left            =   0
+      TabIndex        =   13
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   7455
+      Begin VB.Frame fraPerformance 
+         Caption         =   "Acceleration"
+         Height          =   1095
+         Left            =   5280
+         TabIndex        =   50
+         Top             =   3300
+         Visible         =   0   'False
+         Width           =   1995
+         Begin MSComctlLib.Slider sldAccel 
+            Height          =   435
+            Left            =   180
+            TabIndex        =   51
+            Top             =   240
+            Width           =   1635
+            _ExtentX        =   2884
+            _ExtentY        =   767
+            _Version        =   393216
+            LargeChange     =   2
+            Min             =   1
+            Max             =   5
+            SelStart        =   3
+            Value           =   3
+         End
+         Begin VB.Label lblPriority 
+            Alignment       =   2  'Center
+            Height          =   195
+            Left            =   120
+            TabIndex        =   52
+            Top             =   780
+            Width           =   1755
+         End
+      End
+      Begin VB.CheckBox chkSubFolders 
+         Caption         =   "Look in sub&folders"
+         Enabled         =   0   'False
+         Height          =   255
+         Left            =   1060
+         TabIndex        =   19
+         Top             =   2790
+         Value           =   1  'Checked
+         Width           =   2655
+      End
+      Begin VB.CommandButton cmdBrowse 
+         Caption         =   "..."
+         Enabled         =   0   'False
+         Height          =   315
+         Left            =   4140
+         TabIndex        =   18
+         Top             =   2400
+         Width           =   315
+      End
+      Begin VB.TextBox txtFolder 
+         Enabled         =   0   'False
+         Height          =   315
+         Left            =   1060
+         TabIndex        =   17
+         Top             =   2400
+         Width           =   3015
+      End
+      Begin VB.OptionButton optSearchFolder 
+         Caption         =   "Specify folder:"
+         Height          =   195
+         Left            =   780
+         TabIndex        =   16
+         Top             =   2100
+         Width           =   3315
+      End
+      Begin VB.OptionButton optSearchSystem 
+         Caption         =   "All hard drives"
+         Height          =   195
+         Left            =   780
+         TabIndex        =   15
+         Top             =   1800
+         Value           =   -1  'True
+         Width           =   3315
+      End
+      Begin VB.Frame fraMask 
+         Caption         =   "Search mask"
+         Height          =   1095
+         Left            =   780
+         TabIndex        =   23
+         Top             =   3300
+         Visible         =   0   'False
+         Width           =   4395
+         Begin VB.TextBox txtMask 
+            Height          =   315
+            Left            =   180
+            TabIndex        =   25
+            Top             =   600
+            Width           =   4035
+         End
+         Begin VB.Label Label8 
+            Caption         =   "Include the following files in the &search:"
+            Height          =   195
+            Left            =   180
+            TabIndex        =   24
+            Top             =   300
+            Width           =   4035
+         End
+      End
+      Begin VB.CommandButton cmdAdvanced 
+         Caption         =   "A&dvanced >>"
+         Height          =   345
+         Left            =   6060
+         TabIndex        =   22
+         Top             =   4080
+         Width           =   1245
+      End
+      Begin VB.Label Label6 
+         Caption         =   "Please specify whether the entire system or only a folder should be searched."
+         Height          =   435
+         Left            =   675
+         TabIndex        =   14
+         Top             =   1140
+         Width           =   4635
+      End
+   End
+End
+Attribute VB_Name = "frmMain"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Private CurScreen As Integer
+Private Options As SEARCHOPTIONS
+Private Titles() As String
+Private SubTitles() As String
+Private LastItem As ListItem
+Private AniTmp As String
+Private CancelPressed As Boolean
+Private DirMax As Long
+Private StartTime As Long
+Private WithEvents SearchCore As cSearchCore
+Attribute SearchCore.VB_VarHelpID = -1
+
+Private Const SCRN_BEGIN = 0
+Private Const SCRN_SEARCHMODE = 1
+Private Const SCRN_RESTYPES = 2
+Private Const SCRN_DESTFOLDER = 3
+Private Const SCRN_FINISH = 4
+Private Const SCRN_SEARCH = 5
+Private Const SCRN_END = 6
+
+Private Const Status = "Please wait while ResourcePro is looking for resources." & vbCrLf
+
+Private Type FILEENTRY
+    File As String
+    Version As Long
+End Type
+
+Private Enum rpPriorityClasses
+    HIGH_PRIORITY_CLASS = &H80
+    ABOVE_NORMAL_PRIORITY_CLASS = &H8000
+    NORMAL_PRIORITY_CLASS = &H20
+    BELOW_NORMAL_PRIORITY_CLASS = &H4000
+    IDLE_PRIORITY_CLASS = &H40
+End Enum
+
+Private Type SEARCHOPTIONS
+    SearchSystem As Boolean
+    Folder As String
+    SubFolders As Boolean
+    Mask As String
+    ResTypes As RESTYPEOPTIONS
+    DestPath As String
+    Priority As Integer
+End Type
+
+Private Declare Function LockWindowUpdate Lib "user32" (ByVal hwndLock As Long) As Long
+Private Declare Function GetSystemDirectory Lib "kernel32" Alias "GetSystemDirectoryA" (ByVal lpBuffer As String, ByVal nSize As Long) As Long
+Private Declare Function SendMessageBynum Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Private Const BM_SETSTYLE = &HF4
+Private Const BS_BITMAP = &H80&
+Private Declare Function GetWindowRect Lib "user32" (ByVal hwnd As Long, lpRect As RECT) As Long
+Private Type RECT
+    Left As Long
+    Top As Long
+    Right As Long
+    Bottom As Long
+End Type
+Private Declare Function ClientToScreen Lib "user32" (ByVal hwnd As Long, lpPoint As POINTAPI) As Long
+Private Type POINTAPI
+    x As Long
+    y As Long
+End Type
+Private Declare Function GetClientRect Lib "user32" (ByVal hwnd As Long, lpRect As RECT) As Long
+Private Const CSIDL_PERSONAL = &H5
+Private Const MAX_PATH = 260
+Private Const S_OK = 0
+Private Declare Function SHGetPathFromIDList Lib "shell32" Alias "SHGetPathFromIDListA" (ByVal PIDL As Long, ByVal pszPath As String) As Long
+Private Declare Function SHGetSpecialFolderLocation Lib "shell32" (ByVal hwndOwner As Long, ByVal nFolder As Long, PIDL As Long) As Long
+Private Declare Sub CoTaskMemFree Lib "ole32" (ByVal pv As Long)
+Private Type BROWSEINFO
+    hOwner           As Long
+    pidlRoot         As Long
+    pszDisplayName   As String
+    lpszTitle        As String
+    ulFlags          As Long
+    lpfn             As Long
+    lParam           As Long
+    iImage           As Long
+End Type
+Private Const BIF_RETURNONLYFSDIRS = &H1
+Private Declare Function SHBrowseForFolder Lib "shell32" Alias "SHBrowseForFolderA" (lpBrowseInfo As BROWSEINFO) As Long
+Private Declare Function PathIsDirectory Lib "shlwapi" Alias "PathIsDirectoryA" (ByVal pszPath As String) As Long
+Private Declare Function GetTempPath Lib "kernel32" Alias "GetTempPathA" (ByVal nBufferLength As Long, ByVal lpBuffer As String) As Long
+Private Declare Function GetTempFileName Lib "kernel32" Alias "GetTempFileNameA" (ByVal lpszPath As String, ByVal lpPrefixString As String, ByVal wUnique As Long, ByVal lpTempFileName As String) As Long
+Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+Private Const LVM_FIRST = &H1000
+Private Const LVM_SETCOLUMNWIDTH = (LVM_FIRST + 30)
+Private Const LVSCW_AUTOSIZE_USEHEADER = -2
+Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+Private Const MF_BYPOSITION = &H400
+Private Const MF_REMOVE = &H1000
+Private Declare Function DrawMenuBar Lib "user32" (ByVal hwnd As Long) As Long
+Private Declare Function GetMenuItemCount Lib "user32" (ByVal hMenu As Long) As Long
+Private Declare Function GetSystemMenu Lib "user32" (ByVal hwnd As Long, ByVal bRevert As Long) As Long
+Private Declare Function RemoveMenu Lib "user32" (ByVal hMenu As Long, ByVal nPosition As Long, ByVal wFlags As Long) As Long
+Private Declare Sub PathQuoteSpaces Lib "shlwapi" Alias "PathQuoteSpacesA" (ByVal InPath As String)
+Private Declare Function GetTickCount Lib "kernel32" () As Long
+Private Declare Function StrFromTimeInterval Lib "shlwapi" Alias "StrFromTimeIntervalA" (ByVal pszOut As String, ByVal cchMax As Long, ByVal dwTimeMS As Long, ByVal dwDigits As Long) As Long
+Private Declare Function GetVersionEx Lib "kernel32" Alias "GetVersionExA" (lpVersionInformation As OSVERSIONINFO) As Long
+Private Type OSVERSIONINFO
+    dwOSVersionInfoSize As Long
+    dwMajorVersion As Long
+    dwMinorVersion As Long
+    dwBuildNumber As Long
+    dwPlatformID As Long
+    szCSDVersion As String * 128      '  Maintenance string for PSS usage
+End Type
+Private Declare Function SetPriorityClass Lib "kernel32" (ByVal hProcess As Long, ByVal dwPriorityClass As Long) As Long
+Private Declare Function GetCurrentProcessId Lib "kernel32" () As Long
+Private Const PROCESS_SET_INFORMATION = &H200
+Private Const PROCESS_VM_READ = &H10
+Private Const PROCESS_QUERY_INFORMATION = &H400
+Private Declare Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As Long) As Long
+Private Declare Function PathFindFileName Lib "shlwapi" Alias "PathFindFileNameA" (ByVal pPath As String) As Long
+Private Declare Sub CopyMemoryToStr Lib "kernel32" Alias "RtlMoveMemory" (ByVal Destination As String, Source As Any, ByVal Length As Long)
+Private Declare Function lstrlenPtr Lib "kernel32" Alias "lstrlenA" (ByVal lpLong As Long) As Long
+Private Sub AutosizeListView(LVCtl As ListView)
+    Dim Col As Long
+    
+    For Col = 0 To LVCtl.ColumnHeaders.Count - 1
+        SendMessage LVCtl.hwnd, LVM_SETCOLUMNWIDTH, Col, _
+            ByVal LVSCW_AUTOSIZE_USEHEADER
+    Next Col
+End Sub
+Private Sub AddResStats()
+    Dim LstImg As ListImage, AddImg As Boolean
+    Dim NewItem As ListItem
+        
+    For Each LstImg In ilResTypes.ListImages
+        AddImg = False
+        Select Case LstImg.Key
+            Case "BITMAP"
+                If Options.ResTypes.Bitmap Then AddImg = True
+            Case "ICON"
+                If Options.ResTypes.Icon Then AddImg = True
+            Case "CURSOR"
+                If Options.ResTypes.Cursor Then AddImg = True
+            Case "ANICURSOR"
+                If Options.ResTypes.AniCursor Then AddImg = True
+            Case "VIDEO"
+                If Options.ResTypes.Video Then AddImg = True
+            Case "HTML"
+                If Options.ResTypes.HTML Then AddImg = True
+        End Select
+        If AddImg Then
+            Set NewItem = lvResStats.ListItems.Add
+            With NewItem
+                .Key = LstImg.Key
+                .Text = LstImg.Tag
+                .SmallIcon = LstImg.Index
+                .SubItems(1) = 0
+            End With
+        End If
+    Next LstImg
+    
+    AutosizeListView lvResStats
+End Sub
+Private Function AdjustPath(MyPath As String) As String
+    If Right(MyPath, 1) <> "\" Then
+        AdjustPath = MyPath & "\"
+    Else
+        AdjustPath = MyPath
+    End If
+End Function
+
+Private Function BrowseForFolder(Title As String) As String
+    Dim Info As BROWSEINFO, PIDL As Long
+    Dim MyPath As String
+    
+    With Info
+        .hOwner = Me.hwnd
+        .pidlRoot = 0&
+        .lpszTitle = Title
+        .ulFlags = BIF_RETURNONLYFSDIRS
+    End With
+    PIDL = SHBrowseForFolder(Info)
+    
+    MyPath = Space(MAX_PATH)
+    If SHGetPathFromIDList(ByVal PIDL, ByVal MyPath) Then
+        BrowseForFolder = Left(MyPath, InStr(MyPath, Chr(0)) - 1)
+    End If
+    
+    CoTaskMemFree PIDL
+End Function
+
+Private Sub ChangePriorityClass()
+    Dim MyPriority As Long, ProcessID As Long, hProcess As Long
+    
+    MyPriority = GetPriorityVal
+    
+    ProcessID = GetCurrentProcessId
+    hProcess = OpenProcess(PROCESS_QUERY_INFORMATION Or _
+        PROCESS_SET_INFORMATION Or PROCESS_VM_READ, 0, ProcessID)
+    If hProcess <> 0 Then
+        SetPriorityClass hProcess, MyPriority
+    End If
+End Sub
+Private Function CheckPath(MyPath As String) As Boolean
+    If PathIsDirectory(MyPath) = 0 Then
+        MsgBox "The folder could not be found." & vbCrLf & _
+            "Please specify a valid folder.", vbCritical
+        txtFolder.SetFocus
+        CheckPath = True
+    End If
+End Function
+Private Function CheckTypes() As Boolean
+    With Options.ResTypes
+        If (Not .Bitmap) And (Not .Icon) And (Not .Cursor) And _
+            (Not .AniCursor) And (Not .Video) And (Not .HTML) Then
+            CheckTypes = True
+            MsgBox "Please choose at least one resource type.", _
+                vbCritical
+            lvResTypes.SetFocus
+        End If
+    End With
+End Function
+
+Private Function GetMyDocuments() As String
+    Dim MyPath As String
+    Dim PIDL As Long
+   
+    If SHGetSpecialFolderLocation(Me.hwnd, CSIDL_PERSONAL, PIDL) _
+        = S_OK Then
+        MyPath = Space(MAX_PATH)
+        
+        If SHGetPathFromIDList(ByVal PIDL, ByVal MyPath) Then
+            CoTaskMemFree PIDL
+            GetMyDocuments = Left(MyPath, InStr(MyPath, Chr(0)) - 1)
+        End If
+    End If
+End Function
+Private Function GetPriorityVal() As rpPriorityClasses
+    Dim MyPriority As rpPriorityClasses
+    
+    MyPriority = Choose(Options.Priority, IDLE_PRIORITY_CLASS, _
+        BELOW_NORMAL_PRIORITY_CLASS, NORMAL_PRIORITY_CLASS, _
+        NORMAL_PRIORITY_CLASS, ABOVE_NORMAL_PRIORITY_CLASS, _
+        HIGH_PRIORITY_CLASS)
+        
+    If ((MyPriority = BELOW_NORMAL_PRIORITY_CLASS) Or _
+        (MyPriority = ABOVE_NORMAL_PRIORITY_CLASS)) And _
+        (Not IsWin2000) Then
+        MyPriority = MyPriority / &H100
+    End If
+    
+    GetPriorityVal = MyPriority
+End Function
+Private Function IsWin2000() As Boolean
+    Dim OSInfo As OSVERSIONINFO
+    
+    OSInfo.dwOSVersionInfoSize = Len(OSInfo)
+    
+    GetVersionEx OSInfo
+    
+    With OSInfo
+        Select Case .dwMajorVersion
+            Case 5
+                Select Case .dwMinorVersion
+                    Case 0
+                        If .dwBuildNumber >= 2195 Then
+                            IsWin2000 = True
+                        End If
+                    Case Is > 0
+                        IsWin2000 = True
+                End Select
+            Case Is > 5
+                IsWin2000 = True
+        End Select
+    End With
+End Function
+Private Function GetTimeString(ms As Long) As String
+    Dim TimeStr As String
+    
+    TimeStr = Space(64)
+    
+    StrFromTimeInterval TimeStr, Len(TimeStr) - 1, ms, 3
+    GetTimeString = NullTrim(TimeStr)
+End Function
+Private Sub InitListView()
+    Dim LstImg As ListImage
+    
+    For Each LstImg In ilResTypes.ListImages
+        With LstImg
+            lvResTypes.ListItems.Add , .Key, .Tag, , .Index
+        End With
+    Next LstImg
+End Sub
+
+
+Private Sub InitOptions()
+    With Options
+        If Not GetOptVal("SearchSystem", .SearchSystem) Then
+            .SearchSystem = True
+        End If
+        If Not GetOptVal("Folder", .Folder) Then
+            .Folder = GetSysDir
+        End If
+        If Not GetOptVal("SubFolders", .SubFolders) Then
+            .SubFolders = True
+        End If
+        If Not GetOptVal("Mask", .Mask) Then
+            .Mask = "*.exe;*.dll;*.ocx;*.cpl;*.scr;*.vbx"
+        End If
+        If Not GetOptVal("ResTypesBitmap", .ResTypes.Bitmap) Then
+            .ResTypes.Bitmap = True
+        End If
+        If Not GetOptVal("ResTypesIcon", .ResTypes.Icon) Then
+            .ResTypes.Icon = True
+        End If
+        If Not GetOptVal("ResTypesCursor", .ResTypes.Cursor) Then
+            .ResTypes.Cursor = True
+        End If
+        If Not GetOptVal("ResTypesAniCursor", .ResTypes.AniCursor) Then
+            .ResTypes.AniCursor = True
+        End If
+        If Not GetOptVal("ResTypesVideo", .ResTypes.Video) Then
+            .ResTypes.Video = True
+        End If
+        If Not GetOptVal("ResTypesHTML", .ResTypes.HTML) Then
+            .ResTypes.HTML = True
+        End If
+        If Not GetOptVal("DestPath", .DestPath) Then
+            .DestPath = AdjustPath(GetMyDocuments) & "Resources"
+        End If
+        If Not GetOptVal("Priority", .Priority) Then
+            .Priority = 3
+        End If
+    End With
+End Sub
+Private Sub MakeIndexFile(FileName As String)
+    Dim FileNum As Integer
+    
+    FileNum = FreeFile
+    
+    Open FileName For Append Access Write As #FileNum
+    
+    Print #FileNum, vbCrLf & "ResourcePro index file of " & Now
+    Print #FileNum, "Search in " & Options.Folder & IIf(Options _
+        .SubFolders, " and subfolders", Empty)
+    Print #FileNum, "File mask: " & Options.Mask & vbCrLf
+        
+    Close #FileNum
+End Sub
+Private Sub SaveOptions()
+    With Options
+        SetOptVal "SearchSystem", .SearchSystem
+        SetOptVal "Folder", .Folder
+        SetOptVal "SubFolders", .SubFolders
+        SetOptVal "Mask", .Mask
+        SetOptVal "ResTypesBitmap", .ResTypes.Bitmap
+        SetOptVal "ResTypesIcon", .ResTypes.Icon
+        SetOptVal "ResTypesCursor", .ResTypes.Cursor
+        SetOptVal "ResTypesAniCursor", .ResTypes.AniCursor
+        SetOptVal "ResTypesVideo", .ResTypes.Video
+        SetOptVal "ResTypesHTML", .ResTypes.HTML
+        SetOptVal "DestPath", .DestPath
+        SetOptVal "Priority", .Priority
+    End With
+End Sub
+Private Sub SetOptVal(OptName As String, NewVal As Variant)
+    Dim Reg As New cRegistry
+    
+    Reg.ClassKey = HKEY_LOCAL_MACHINE
+    Reg.SectionKey = "Software\ResourcePro"
+    
+    Reg.ValueKey = OptName
+    
+    If Not Reg.KeyExists Then
+        Reg.CreateKey
+    End If
+    
+    Select Case VarType(NewVal)
+        Case vbLong
+            Reg.ValueType = REG_DWORD
+            Reg.Value = CLng(NewVal)
+        Case vbInteger
+            Reg.ValueType = REG_DWORD
+            Reg.Value = CLng(NewVal)
+        Case vbBoolean
+            Reg.ValueType = REG_DWORD
+            Reg.Value = IIf(NewVal, 1, 0)
+        Case vbString
+            Reg.ValueType = REG_SZ
+            Reg.Value = CStr(NewVal)
+    End Select
+    
+    Set Reg = Nothing
+End Sub
+Private Function GetOptVal(OptName As String, Value As Variant) As Boolean
+    Dim Reg As New cRegistry
+    
+    Reg.ClassKey = HKEY_LOCAL_MACHINE
+    Reg.SectionKey = "Software\ResourcePro"
+    
+    Reg.ValueKey = OptName
+    
+    If Reg.KeyExists Then
+        Value = Reg.Value
+        GetOptVal = True
+    End If
+    
+    Set Reg = Nothing
+End Function
+Private Sub InitTitles()
+    ReDim Titles(0 To fraScreen.UBound)
+    ReDim SubTitles(0 To fraScreen.UBound)
+    
+    Titles(1) = "Search mode"
+    SubTitles(1) = "Specify here where the search should take place."
+    
+    Titles(2) = "Resource types"
+    SubTitles(2) = "Check the resource types you are looking for."
+
+    Titles(3) = "Destination"
+    SubTitles(3) = "Please choose a destination folder for the resources."
+
+    Titles(4) = "Ready"
+    SubTitles(4) = "ResourcePro is ready for the search."
+
+    Titles(5) = "Search in progress..."
+    SubTitles(5) = "The operation may take several minutes."
+End Sub
+
+
+Private Sub KillCloseButton()
+    Dim hMenu As Long, ItemCount As Long
+    
+    hMenu = GetSystemMenu(Me.hwnd, 0)
+    If hMenu Then
+        ItemCount = GetMenuItemCount(hMenu)
+        RemoveMenu hMenu, ItemCount - 1, MF_REMOVE Or _
+            MF_BYPOSITION
+        RemoveMenu hMenu, ItemCount - 2, MF_REMOVE Or _
+            MF_BYPOSITION
+        DrawMenuBar Me.hwnd
+    End If
+End Sub
+Public Function LoadAnim(AniCtl As Animation, ResID As Variant) As String
+    Dim Data() As Byte, TmpPath As String, Prefix As String
+    Dim FileNum As Integer
+    
+    TmpPath = Space(260)
+    Prefix = "ifr"
+    
+    If GetTempPath(Len(TmpPath) - 1, TmpPath) <> 0 Then
+        If GetTempFileName(TmpPath, Prefix, 0, TmpPath) <> 0 Then
+            TmpPath = NullTrim(TmpPath)
+            FileNum = FreeFile
+            Data = LoadResData(ResID, "AVI")
+            On Error GoTo Cancel
+            Open TmpPath For Binary Access Write As #FileNum
+                On Error GoTo 0
+                Put #FileNum, , Data
+            Close #FileNum
+            AniCtl.Open TmpPath
+        End If
+    End If
+Cancel:
+End Function
+Private Function NullTrim(MyString As String) As String
+    Dim Pos As Integer
+    
+    Pos = InStr(MyString, Chr(0))
+    
+    If Pos Then
+        NullTrim = Left(MyString, Pos - 1)
+    Else
+        NullTrim = MyString
+    End If
+End Function
+Private Sub MakeBMStyleButton(Button As CommandButton)
+    SendMessageBynum Button.hwnd, BM_SETSTYLE, BS_BITMAP, True
+End Sub
+Private Function GetSysDir() As String
+    Dim Buffer As String, RetVal As Long
+    
+    Buffer = Space(256)
+    
+    RetVal = GetSystemDirectory(Buffer, Len(Buffer) - 1)
+    
+    If RetVal <> 0 Then
+        GetSysDir = Left(Buffer, RetVal)
+    End If
+End Function
+
+
+Private Function MakeResDir(ByVal BasePath As String)
+    Dim IsRoot As Boolean
+    
+    BasePath = AdjustPath(BasePath)
+    IsRoot = True
+    On Error GoTo MkDirErr
+    MkDir BasePath
+    IsRoot = False
+    With Options.ResTypes
+        MakeIndexFile BasePath & IdxFile
+        If .Bitmap Then
+            MkDir BasePath & "Bitmaps"
+            MakeIndexFile BasePath & "Bitmaps\" & IdxFile
+        End If
+        If .Icon Then
+            MkDir BasePath & "Icons"
+            MakeIndexFile BasePath & "Icons\" & IdxFile
+        End If
+        If .Cursor Then
+            MkDir BasePath & "Cursors"
+            MakeIndexFile BasePath & "Cursors\" & IdxFile
+        End If
+        If .AniCursor Then
+            MkDir BasePath & "Animated Cursors"
+            MakeIndexFile BasePath & "Animated Cursors\" & IdxFile
+        End If
+        If .Video Then
+            MkDir BasePath & "Videos"
+            MakeIndexFile BasePath & "Videos\" & IdxFile
+        End If
+        If .HTML Then
+            MkDir BasePath & "Web pages"
+            MakeIndexFile BasePath & "Web pages\" & IdxFile
+        End If
+    End With
+    On Error GoTo 0
+    Exit Function
+MkDirErr:
+    Select Case Err.Number
+        Case 76
+            MsgBox "The specified folder is invalid." & vbCrLf & _
+                "Please type another name.", vbCritical
+            txtDestPath.SetFocus
+            MakeResDir = True
+        Case 75
+            If IsRoot Then
+                If MsgBox("The specified folder already exists." & vbCrLf & _
+                    "Do you want to continue?", vbExclamation Or _
+                    vbYesNo) = vbYes Then
+                    Resume Next
+                Else
+                    txtDestPath.SetFocus
+                    MakeResDir = True
+                End If
+            End If
+        Case Else
+            Resume Next
+    End Select
+End Function
+Private Sub ProcessScreen(ScreenNum As Integer)
+    With Options
+        Select Case ScreenNum
+            Case SCRN_SEARCHMODE
+                If .SearchSystem Then
+                    optSearchSystem = True
+                Else
+                    optSearchFolder = True
+                End If
+                txtFolder = .Folder
+                chkSubFolders = Abs(.SubFolders)
+                txtMask = .Mask
+                sldAccel = .Priority
+                sldAccel_Scroll
+            Case SCRN_RESTYPES
+                With lvResTypes.ListItems
+                    .Item("BITMAP").Checked = Options.ResTypes.Bitmap
+                    .Item("ICON").Checked = Options.ResTypes.Icon
+                    .Item("CURSOR").Checked = Options.ResTypes.Cursor
+                    .Item("ANICURSOR").Checked = Options.ResTypes.AniCursor
+                    .Item("VIDEO").Checked = Options.ResTypes.Video
+                    .Item("HTML").Checked = Options.ResTypes.HTML
+                End With
+            Case SCRN_DESTFOLDER
+                txtDestPath = .DestPath
+            Case SCRN_SEARCH
+                AddResStats
+                AniTmp = LoadAnim(aniAnim, "FINDFILES")
+                aniAnim.Play
+                KillCloseButton
+            Case SCRN_END
+                Me.Caption = App.Title
+                cmdCancel.Caption = "Close"
+        End Select
+    End With
+End Sub
+Private Function ProcessScreenEnd(ScreenNum As Integer) As Boolean
+    With Options
+        Select Case ScreenNum
+            Case SCRN_SEARCHMODE
+                .SearchSystem = optSearchSystem
+                .Folder = txtFolder
+                .SubFolders = -chkSubFolders
+                .Mask = txtMask
+                If optSearchFolder Then
+                    ProcessScreenEnd = CheckPath(txtFolder)
+                End If
+            Case SCRN_RESTYPES
+                With lvResTypes.ListItems
+                    Options.ResTypes.Bitmap = .Item("BITMAP").Checked
+                    Options.ResTypes.Icon = .Item("ICON").Checked
+                    Options.ResTypes.Cursor = .Item("CURSOR").Checked
+                    Options.ResTypes.AniCursor = .Item("ANICURSOR").Checked
+                    Options.ResTypes.Video = .Item("VIDEO").Checked
+                    Options.ResTypes.HTML = .Item("HTML").Checked
+                End With
+                ProcessScreenEnd = CheckTypes
+            Case SCRN_DESTFOLDER
+                .DestPath = txtDestPath
+                ProcessScreenEnd = MakeResDir(txtDestPath)
+            Case SCRN_SEARCH
+                On Error Resume Next
+                Kill AniTmp
+                On Error GoTo 0
+        End Select
+    End With
+End Function
+Public Sub ResFound(ResType As RESOURCETYPES, ResName As Variant)
+    Dim ItemKey As String
+
+    Select Case ResType
+        Case rcrtBitmap: ItemKey = "BITMAP"
+        Case rcrtIcon: ItemKey = "ICON"
+        Case rcrtCursor: ItemKey = "CURSOR"
+        Case rcrtAniCursor: ItemKey = "ANICURSOR"
+        Case rcrtVideo: ItemKey = "VIDEO"
+        Case rcrtHTML: ItemKey = "HTML"
+    End Select
+    
+    lvResStats.ListItems(ItemKey).SubItems(1) = _
+        Val(lvResStats.ListItems(ItemKey).SubItems(1)) + 1
+End Sub
+Private Sub ShowScreen(ScreenNum As Integer)
+    Dim n As Integer
+    
+    If ProcessScreenEnd(CurScreen) Then Exit Sub
+    
+    CurScreen = ScreenNum
+    
+    Select Case CurScreen
+        Case Is < 0
+            Exit Sub
+        Case Is > fraScreen.UBound
+            cmdCancel_Click
+            Exit Sub
+    End Select
+    
+    LockWindowUpdate Me.hwnd
+    
+    lblScrnTitle = Titles(CurScreen)
+    lblScrnSubTitle = SubTitles(CurScreen)
+    ProcessScreen (CurScreen)
+    
+    For n = 0 To fraScreen.UBound
+        If n <> CurScreen Then
+            fraScreen(n).Visible = False
+        Else
+            fraScreen(n).Visible = True
+        End If
+    Next n
+
+    fraScreen(CurScreen).ZOrder
+    
+    If CurScreen >= 1 Then
+        fraWatermark.Visible = False
+        fraScreenHdr.Visible = True
+        fraScreenHdr.ZOrder
+        cmdBack.Enabled = True
+    Else
+        fraScreenHdr.Visible = False
+        cmdBack.Enabled = False
+    End If
+    Select Case CurScreen
+        Case SCRN_BEGIN
+            cmdBack.Enabled = False
+            cmdNext.Caption = "&Next >"
+        Case SCRN_SEARCHMODE, SCRN_RESTYPES, SCRN_DESTFOLDER
+            cmdBack.Enabled = True
+            cmdNext.Caption = "&Next >"
+        Case SCRN_FINISH
+            cmdBack.Enabled = True
+            cmdNext.Caption = "Finish"
+        Case SCRN_SEARCH
+            cmdBack.Enabled = False
+            cmdNext.Enabled = False
+        Case SCRN_END
+            cmdBack.Enabled = False
+            cmdNext.Enabled = False
+            fraScreenHdr.Visible = False
+            fraWatermark.Visible = True
+            fraWatermark.ZOrder
+    End Select
+    
+    LockWindowUpdate False
+    
+    If CurScreen = SCRN_SEARCH Then
+        Me.Refresh
+        StartSearch
+    End If
+End Sub
+
+Private Sub StartSearch()
+    ChangePriorityClass
+    
+    If Options.SearchSystem Then
+        cmdCancel.Enabled = False
+        lblStatus = Status & "Initializing..."
+        lblStatus.Refresh
+        DirMax = SearchCore.GetDirCount(True)
+        l3dProgressBack.Visible = True
+        lblStatus = Status
+        lblStatus.Refresh
+        cmdCancel.Enabled = True
+        StartTime = GetTickCount
+        SearchCore.SearchSystemForFiles Options.Mask
+    Else
+        If Options.SubFolders Then
+            cmdCancel.Enabled = False
+            lblStatus = Status & "Initializing..."
+            lblStatus.Refresh
+            DirMax = SearchCore.GetDirCount(False, Options.Folder)
+            l3dProgressBack.Visible = True
+            cmdCancel.Enabled = True
+        End If
+        lblStatus = Status
+        lblStatus.Refresh
+        StartTime = GetTickCount
+        SearchCore.SearchForFiles Options.Folder, _
+            Options.SubFolders, Options.Mask
+    End If
+End Sub
+
+Private Sub cmdAdvanced_Click()
+    cmdAdvanced.Visible = False
+    fraMask.Visible = True
+    fraPerformance.Visible = True
+End Sub
+
+Private Sub cmdBack_Click()
+    ShowScreen CurScreen - 1
+End Sub
+
+Private Sub cmdBrowse_Click()
+    txtFolder = BrowseForFolder("Bitte wählen Sie den Ordner, in dem nach Ressourcen gesucht werden soll.")
+End Sub
+
+Private Sub cmdBrowse_GotFocus()
+    MakeBMStyleButton cmdBrowse
+End Sub
+
+
+Private Sub cmdBrowseDest_Click()
+    txtDestPath = BrowseForFolder("Bitte wählen Sie den Ordner, in dem die Ressourcen abgelegt werden sollen.")
+End Sub
+
+Private Sub cmdBrowseDest_GotFocus()
+    MakeBMStyleButton cmdBrowseDest
+End Sub
+
+
+Private Sub cmdCancel_Click()
+    If CurScreen = SCRN_SEARCH Then
+        If MsgBox("Are you sure you want to cancel the search?", _
+            vbExclamation Or vbYesNo) = vbYes Then
+            cmdCancel.Enabled = False
+            CancelPressed = True
+            Unload Me
+        End If
+    Else
+        Unload Me
+    End If
+End Sub
+Private Sub cmdNext_Click()
+    ShowScreen CurScreen + 1
+End Sub
+
+
+Private Sub cmdShowFolder_Click()
+    Dim DestPath As String
+    
+    DestPath = Options.DestPath
+    PathQuoteSpaces (DestPath)
+    
+    Shell "explorer /root ," & DestPath, vbNormalFocus
+End Sub
+
+Private Sub cmdShowFolder_GotFocus()
+    MakeBMStyleButton cmdShowFolder
+End Sub
+
+
+Private Sub Form_Initialize()
+    Set SearchCore = New cSearchCore
+End Sub
+
+Private Sub Form_Load()
+    InitTitles
+    InitOptions
+    InitListView
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    SaveOptions
+    End
+End Sub
+
+Private Sub lvResTypes_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+    Dim WinRect As RECT, ClientRect As RECT, TmpPos As POINTAPI
+    Dim XPos As Integer, YPos As Integer, Item As ListItem
+        
+    Set Item = lvResTypes.HitTest(0, y)
+    If Item Is Nothing Then Exit Sub
+    If Item Is LastItem Then Exit Sub
+    
+    GetWindowRect lvResTypes.hwnd, WinRect
+    GetClientRect lvResTypes.hwnd, ClientRect
+    ClientToScreen lvResTypes.hwnd, TmpPos
+    
+    XPos = WinRect.Right + 16
+    YPos = TmpPos.y + Item.Top \ Screen.TwipsPerPixelY
+    
+    Set LastItem = Item
+End Sub
+Private Sub optSearchFolder_Click()
+    txtFolder.Enabled = True
+    cmdBrowse.Enabled = True
+    chkSubFolders.Enabled = True
+End Sub
+
+Private Sub optSearchSystem_Click()
+    txtFolder.Enabled = False
+    cmdBrowse.Enabled = False
+    chkSubFolders.Enabled = False
+End Sub
+
+
+Private Sub SearchCore_FileFound(FileName As String, FileCount As Long, DirCount As Long, Cancel As Boolean)
+    Dim ProgVal As Long, TimeDiff As Long, TimeRemain As Long
+    
+    If CancelPressed Then
+        Cancel = True
+    End If
+    If Options.SubFolders Then
+        ProgVal = (DirCount / DirMax) * 50
+        If prbProgress <> ProgVal Then
+            If ProgVal <= DirMax Then
+                prbProgress = ProgVal
+                Me.Caption = App.Title & " - " & ProgVal * 2 & "% completed"
+                TimeDiff = GetTickCount - StartTime
+                If TimeDiff > 10000 Then
+                    TimeRemain = ((DirMax - DirCount) / DirCount) * TimeDiff
+                    If TimeRemain > 10000 Then
+                        lblStatus = Status & "Remaining time: " & _
+                            GetTimeString(TimeRemain)
+                    End If
+                End If
+            End If
+        End If
+    End If
+    If mResCore.SearchForResources(FileName, Options.ResTypes, Me, _
+        Options.DestPath) Then
+        Cancel = True
+        MsgBox "An error has occured during the search." & vbCrLf & _
+            "ResourcePro will now close.", vbCritical
+        cmdCancel.Enabled = False
+        aniAnim.Stop
+        Sleep 1500
+        Unload Me
+    End If
+    If (FileCount Mod 10) = 0 Then
+        DoEvents
+    End If
+End Sub
+Private Function PtrToStr(StrPtr As Long) As String
+    Dim StrPtrLen As Long
+
+    StrPtrLen = lstrlenPtr(StrPtr)
+    PtrToStr = Space(StrPtrLen)
+
+    CopyMemoryToStr PtrToStr, ByVal StrPtr, StrPtrLen
+End Function
+
+Private Sub SearchCore_SearchFinished()
+    cmdNext_Click
+End Sub
+
+
+Private Sub sldAccel_Scroll()
+    lblPriority = Choose(sldAccel, "Lowest priority", _
+        "Low priority", "Default priority", _
+        "High priority", "Highest priority")
+    Options.Priority = sldAccel
+End Sub
