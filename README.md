@@ -1,6 +1,6 @@
 # presproe
 
-VB6 working copy of `presproe` from Dave Robinson's OneDrive Historical Dev `VB/Old` folder. Project title: ResourcePro. Output: `ResPro.exe`. ResourcePro. `VersionCompanyName`: Thomas Kabir.
+Thomas Kabir / VB Frood ResourcePro (`ResPro.exe`, © 2000): wizard that searches program files for embedded resources (icons, bitmaps, cursors, AVI, etc.) and extracts them to a folder. Form source is redacted to `frmmain.frm.example`. Open `ResourcePro.vbp` in the VB6 IDE.
 
 **Source last updated:** 2000-06-01 · **Language:** VB6 · **Target:** VB6 Win32 · **Output:** WinForms exe
 
