@@ -26,7 +26,7 @@ Open the `.vbp` in Visual Basic 6.0 IDE:
 
 ## Attribution and provenance
 
-Working copy from Dave Robinson's OneDrive Historical Dev folder `VB/Old/presproe`.
+Working copy from my Historical Dev folder `VB/Old/presproe`.
 Company names in project files: Thomas Kabir.
 Third-party attribution: Thomas Kabir. See `THIRD_PARTY_NOTICES.md`.
 
