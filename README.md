@@ -32,4 +32,4 @@ Third-party attribution: Thomas Kabir. See `THIRD_PARTY_NOTICES.md`.
 
 ## License
 
-Third-party code remains under its original terms (or none, where none were supplied). See `THIRD_PARTY_NOTICES.md`. Do not treat this tree as VaderConsulting original MIT-licensed work.
+Third-party code remains under its original terms (or none, where none were supplied). See `THIRD_PARTY_NOTICES.md`. Do not treat this tree as Vader Consulting original MIT-licensed work.
